@@ -11,6 +11,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpLoaderInterceptor } from './../interceptors/http-loader';
 import { HttpErrorInterceptor } from '../interceptors/http-error';
 import { HttpAuthInterceptor } from '../interceptors/http-auth';
+import { ApiProvider } from '../providers/api/api';
 
 @NgModule({
   declarations: [
@@ -28,10 +29,12 @@ import { HttpAuthInterceptor } from '../interceptors/http-auth';
   providers: [
     StatusBar,
     SplashScreen,
+    ApiProvider,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     {provide: HTTP_INTERCEPTORS, useClass: HttpAuthInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: HttpLoaderInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true}
+    
     
   ]
 })

@@ -1,5 +1,5 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { ApiProvider } from '../api/api';
 
 /*
   Generated class for the DropletProvider provider.
@@ -10,9 +10,13 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class DropletProvider {
 
-  constructor(public http: HttpClient) {}
+  constructor(private api: ApiProvider) {}
   
   all(){
-    return this.http.get('https://api.digitalocean.com/v2/droplets')
+    return this.api.get('/droplets')
+  }
+
+  get(droplet_id: string){
+    return this.api.get(`/droplets/${droplet_id}`)
   }
 }
